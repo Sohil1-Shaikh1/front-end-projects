@@ -1,3 +1,4 @@
+const videoCardContainer = document.querySelector(".video-wrapper");
 let api_key = "AIzaSyD_bLuLkkRR3Y96uZuWUXPFuKTPNtHc9Rg";
 let video_http = "https://www.googleapis.com/youtube/v3/videos?";
 let channel_http = "https://www.googleapis.com/youtube/v3/channels?";
@@ -38,6 +39,15 @@ const getChannelIcon = (video_data) =>{
           
 
 };
+const playVideo = (embedHtml) => {
+    sessionStorage.setItem("videoEmbedHtml", embedHtml);
+
+    window.location.href = "play-page.html"
+}
+
+
+
+
 const makeVideoCard = (data) => {
     const videoCard = document.createElement("div");
     videoCard.classList.add("video");
@@ -57,5 +67,10 @@ const makeVideoCard = (data) => {
     </div>
     </div>
     `;
+    videoCard.addEventListener("click", () =>{
+        playVideo(data.player.embedHtml);
+    });
+
+
     videoCardContainer.appendChild(videoCard);
 };
